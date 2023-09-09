@@ -1,0 +1,37 @@
+.adopt {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 49px;
+  margin: 60px;
+  margin-top: 0px;
+}
+
+.aboutus {
+  display: flex;
+  flex-direction: row;
+}
+.picture {
+  display: flex;
+  overflow: hidden;
+  border-radius: 50px;
+  height: 50vh;
+  margin: 20px;
+}
+.p {
+  flex-basis: 30%;
+  margin: 20px;
+}
+.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+/*sizing of map*/
+.leaflet-container {
+  width: 800px;
+  height: 400px;
+  border-radius: 49px;
+}

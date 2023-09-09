@@ -1,0 +1,124 @@
+{
+  "notices": [
+    {
+      "title": "International Cat Day",
+      "text": "Lorem ipsum dolor sit amet. Et sunt pariatur aut doloribus perferendis eos odio optio ea labore expedita. Rem numquam dignissimos et mollitia delectus eos iure voluptatem ex saepe eaque in rerum aliquid et voluptatibus veniam vel magnam temporibus.",
+      "important": true,
+      "date": "2023-03-03T13:34:59.518Z",
+      "id": 10
+    },
+    {
+      "title": "Opening ceremony",
+      "text": "Lorem ipsum dolor sit amet. Qui iusto nihil ad aspernatur laudantium vel quam quia est itaque mollitia et laudantium atque ut galisum nemo. Ea corrupti nobis et consequuntur culpa qui consequatur ducimus. In neque doloremque et laboriosam accusamus et voluptatum expedita et tempora recusandae et ullam aliquam ut maxname dolorem.",
+      "important": false,
+      "date": "2023-05-09T00:55:04.851Z",
+      "id": 11
+    }
+  ],
+  "donations": [
+    {
+      "id": 1,
+      "category": "donated",
+      "type": "food",
+      "value": 25,
+      "description": "Dry food for dogs - 10 kg"
+    },
+    {
+      "id": 2,
+      "kategorija": "donated",
+      "type": "toys",
+      "value": 15,
+      "description": "Cat scratcher"
+    },
+    {
+      "id": 3,
+      "kategorija": "offering",
+      "type": "other",
+      "value": 25,
+      "description": "Cage for medium parrots"
+    },
+    {
+      "kategorija": "offering",
+      "type": "medicine",
+      "description": "nudim lijekove protiv buha",
+      "value": 10,
+      "id": 4
+    },
+    {
+      "kategorija": "lookingfor",
+      "type": "food",
+      "description": "We need food for the cubs",
+      "value": 88,
+      "id": 5
+    }
+  ],
+  "animals": [
+    {
+      "id": 1,
+      "name": "Garfield",
+      "species": "mačka",
+      "picture": "garfield.jpg",
+      "chip": false,
+      "years": 44,
+      "description": "Likes lasagna",
+      "checkup": "2022-09-23",
+      "adopted": true
+    },
+    {
+      "name": "Snoopy",
+      "species": "pas",
+      "picture": "snoopy.jpg",
+      "chip": true,
+      "years": "50",
+      "description": "More than just a dog",
+      "checkup": "2000-03-02",
+      "adopted": true,
+      "id": 2
+    },
+    {
+      "id": 3,
+      "name": "Špirko",
+      "species": "cat",
+      "picture": "špirko.jpg",
+      "chip": false,
+      "years": 5,
+      "description": "Meows a lot",
+      "checkup": "2023-09-28",
+      "adopted": true
+    },
+    {
+      "id": 4,
+      "name": "Ksenija",
+      "species": "pas",
+      "picture": "ksenija.jpg",
+      "chip": true,
+      "years": 50,
+      "description": "Diva",
+      "checkup": "2015-02-13",
+      "adopted": false
+    },
+    {
+      "id": 5,
+      "name": "Franko",
+      "species": "rabit",
+      "picture": "franko.jpg",
+      "chip": true,
+      "years": 1,
+      "description": "Curious and always hungry",
+      "checkup": "2023-04-15",
+      "adopted": false
+    },
+    {
+      "id": 6,
+      "name": "Roko",
+      "species": "dog",
+      "picture": "roko.jpg",
+      "chip": true,
+      "years": 3,
+      "description": "Always cold",
+      "checkup": "2015-02-18",
+      "adopted": false
+    }
+  ],
+  "species": ["cat", "dog", "rabbit"]
+}

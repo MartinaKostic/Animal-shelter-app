@@ -1,0 +1,122 @@
+button {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 19px;
+  padding: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: var(--color-hover);
+}
+
+select {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  border-radius: 10px;
+  background-color: var(--color-white);
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+.add {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 19px;
+  padding: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.add:hover {
+  background-color: var(--color-hover);
+}
+
+input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 0;
+  box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+textarea {
+  padding: 5px;
+  width: 400px;
+  height: 150px;
+  border-radius: 19px;
+}
+
+.donation {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.donation img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: 50px;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0px;
+  color: var(--color-attention);
+  text-transform: uppercase;
+  font-size: xx-large;
+}
+
+.donation p {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.donation button {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  border-radius: 19px;
+  padding: 8px;
+  margin: 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.donation button:hover {
+  background-color: var(--color-hover);
+}
+
+.formDonationButtons {
+  display: flex;
+  gap: 15px;
+}
+.details {
+  font-weight: lighter;
+}

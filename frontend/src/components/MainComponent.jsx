@@ -23,10 +23,17 @@ function MainComponent() {
   }, []);
 
   function refetchAnimals() {
-    axios.get("http://localhost:5000/animals").then((res) => {
-      setAnimals(res.data);
-      setFilteredAnimals(res.data);
-    });
+    axios
+      .get("http://localhost:5000/animals")
+      .then((response) => {
+        setAnimals(response.data);
+        setFilteredAnimals(response.data);
+        console.log(response);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        // Handle the error, e.g., display an error message to the user
+      });
     resetFilters();
   }
 

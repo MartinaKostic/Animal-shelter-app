@@ -7,7 +7,7 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model animals {
+model Animals {
   id          Int       @id
   name        String    @db.VarChar
   picture     String    @db.VarChar
@@ -17,34 +17,44 @@ model animals {
   species_id  Int 
   chip        Boolean
   years       Int
-  species     species   @relation(fields: [species_id], references: [id], onUpdate: Restrict, map: "species_id")
+  species     Species   @relation(fields: [species_id], references: [id], onUpdate: Restrict, map: "species_id")
+
+  @@map(name: "animals")
 }
 
-model donation_category {
+model Donation_category {
   id        Int         @id(map: "donateion_category_pkey")
   name      String      @db.VarChar
-  donations donations[]
+  donations Donations[]
+
+  @@map(name: "donation_category")
 }
 
-model donations {
+model Donations {
   id                Int               @id @default(autoincrement())
   type              String            @db.VarChar
   value_            Decimal           @map("value ") @db.Decimal
   description       String?
   category_id       Int
-  donation_category donation_category @relation(fields: [category_id], references: [id], onUpdate: Restrict, map: "category_id")
+  donation_category Donation_category @relation(fields: [category_id], references: [id], onUpdate: Restrict, map: "category_id")
+
+    @@map(name: "donations")
 }
 
-model notices {
+model Notices {
   title      String   @db.VarChar
   id         Int      @id @default(autoincrement())
   text       String
   important_ Boolean  @map("important ")
   date       DateTime @db.Timestamp(6)
+
+    @@map(name: "notices")
 }
 
-model species {
+model Species {
   id          Int       @id @default(autoincrement())
   animal_type String    @db.VarChar
-  animals     animals[]
+  animals     Animals[]
+
+    @@map(name: "species")
 }

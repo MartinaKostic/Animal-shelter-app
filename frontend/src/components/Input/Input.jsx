@@ -30,12 +30,12 @@ function Input(props) {
     });
   };
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/species")
-      .then((rez) => setSpecies(rez.data))
-      .catch((err) => console.log(err.message));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("http://localhost:5000/species")
+  //     .then((rez) => setSpecies(rez.data))
+  //     .catch((err) => console.log(err.message));
+  // }, []);
 
   function inputChange(event) {
     const { name, value } = event.target;

@@ -1,24 +1,23 @@
 import { PrismaClient } from "@prisma/client";
-
 const prisma = new PrismaClient();
 
-const getAnimals = async (req, res) => {
+const getAnimals = async (response) => {
   try {
     // Use Prisma's findMany to retrieve all animals from the animals table
-    const animals = await prisma.animal.findMany();
+    const animals = await prisma.Animals.findMany();
 
     // Send the retrieved animals as a JSON response
-    res.status(200).json(animals);
+    response.status(200).json(animals);
   } catch (error) {
     console.error("Error retrieving animals:", error);
-    res.status(500).json({ error: "Server error" });
+    response.status(500).json({ error: "Server error" });
   } finally {
     // Disconnect from the Prisma Client
     await prisma.$disconnect();
   }
 };
 
-module.exports = {
+export default {
   getAnimals,
   // Other controller functions
 };

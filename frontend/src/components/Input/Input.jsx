@@ -24,7 +24,7 @@ function Input(props) {
     e.preventDefault();
     const send = formatData(form);
     console.log(send);
-    axios.post("http://localhost:3003/animals", send).then((res) => {
+    axios.post("http://localhost:5000/animals", send).then((res) => {
       props.add(res.data);
       navigate("/list");
     });
@@ -32,7 +32,7 @@ function Input(props) {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3003/species")
+      .get("http://localhost:5000/species")
       .then((rez) => setSpecies(rez.data))
       .catch((err) => console.log(err.message));
   }, []);

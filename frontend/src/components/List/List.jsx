@@ -34,7 +34,7 @@ function List({ animals, fetchNewData }) {
   };
 
   async function deleteAnimal(id) {
-    await axios.delete(`http://localhost:3003/zivotinje/${id}`);
+    await axios.delete(`http://localhost:5000/animals/${id}`);
     fetchNewData();
   }
 
@@ -44,13 +44,13 @@ function List({ animals, fetchNewData }) {
 
   async function handleSave(animal) {
     const data = prepareData(animal);
-    await axios.put(`http://localhost:3003/animals/${selectedId}`, data);
+    await axios.put(`http://localhost:5000/animals/${selectedId}`, data);
     setEditmode(false);
     fetchNewData();
   }
   async function handleAdopted(id) {
     await axios
-      .patch(`http://localhost:3003/animals/${id}`, {
+      .patch(`http://localhost:5000/animals/${id}`, {
         adopted: true,
       })
       .then((res) => console.log(res));

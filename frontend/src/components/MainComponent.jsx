@@ -23,7 +23,7 @@ function MainComponent() {
   }, []);
 
   function refetchAnimals() {
-    axios.get("http://localhost:3003/animals").then((res) => {
+    axios.get("http://localhost:5000/animals").then((res) => {
       setAnimals(res.data);
       setFilteredAnimals(res.data);
     });

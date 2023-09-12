@@ -1,0 +1,50 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model animals {
+  id          Int       @id
+  name        String    @db.VarChar
+  picture     String    @db.VarChar
+  description String?
+  checkup     DateTime? @db.Date
+  adopted     Boolean
+  species_id  Int 
+  chip        Boolean
+  years       Int
+  species     species   @relation(fields: [species_id], references: [id], onUpdate: Restrict, map: "species_id")
+}
+
+model donation_category {
+  id        Int         @id(map: "donateion_category_pkey")
+  name      String      @db.VarChar
+  donations donations[]
+}
+
+model donations {
+  id                Int               @id @default(autoincrement())
+  type              String            @db.VarChar
+  value_            Decimal           @map("value ") @db.Decimal
+  description       String?
+  category_id       Int
+  donation_category donation_category @relation(fields: [category_id], references: [id], onUpdate: Restrict, map: "category_id")
+}
+
+model notices {
+  title      String   @db.VarChar
+  id         Int      @id @default(autoincrement())
+  text       String
+  important_ Boolean  @map("important ")
+  date       DateTime @db.Timestamp(6)
+}
+
+model species {
+  id          Int       @id @default(autoincrement())
+  animal_type String    @db.VarChar
+  animals     animals[]
+}

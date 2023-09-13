@@ -41,13 +41,14 @@ function List({ animals, fetchNewData }) {
   function handleClose() {
     setEditmode(false);
   }
-
+  //when admin ads new animal
   async function handleSave(animal) {
     const data = prepareData(animal);
     await axios.put(`http://localhost:5000/animals/${selectedId}`, data);
     setEditmode(false);
     fetchNewData();
   }
+  //when user adopts on button
   async function handleAdopted(id) {
     await axios
       .patch(`http://localhost:5000/animals/${id}`, {
@@ -60,7 +61,7 @@ function List({ animals, fetchNewData }) {
   function prepareData(animal) {
     const newData = {
       name: form.name != null ? form.name : animal.name,
-      species: form.species != null ? form.species : animal.species,
+      species: form.species != null ? form.species : animal.species.animal_type,
       picture: form.picture != null ? form.picture : animal.picture,
       chip: form.chip != null ? form.chip : animal.chip,
       years: form.years != null ? form.years : animal.years,
@@ -74,8 +75,10 @@ function List({ animals, fetchNewData }) {
 
   function inputChange(event) {
     const { name, value } = event.target;
-
+    console.log(event.target.files[0]);
     if (name == "picture") {
+      setForm({ ...form, [name]: event.target.files[0].name });
+    } else if (name == "species") {
       setForm({ ...form, [name]: event.target.files[0].name });
     } else if (name == "chip") {
       setIsCheckedChip((prevValue) => !prevValue);
@@ -109,7 +112,7 @@ function List({ animals, fetchNewData }) {
                 <input
                   name="species"
                   type="text"
-                  defaultValue={animal.species}
+                  defaultValue={animal.species.animal_type}
                   onChange={inputChange}
                 />
               </label>
@@ -184,7 +187,10 @@ function List({ animals, fetchNewData }) {
             </div>
           ) : (
             <>
-              <img src={animal.picture} alt={animal.name} />
+              <img
+                src={`http://localhost:5000/public/${animal.picture}`}
+                alt={animal.name}
+              />
 
               <h1>{animal.name}</h1>
 
@@ -214,7 +220,8 @@ function List({ animals, fetchNewData }) {
               </div>
 
               <h3>
-                Species: <span className="details">{animal.species}</span>
+                Species:{" "}
+                <span className="details">{animal.species.animal_type}</span>
               </h3>
               <p>
                 Years: <span className="details">{animal.years}</span>
@@ -224,10 +231,13 @@ function List({ animals, fetchNewData }) {
                 <span className="details">{animal.description}</span>
               </p>
               <p>
-                Last checkup: <span className="details">{animal.checkup}</span>
+                Last checkup:{" "}
+                <span className="details">
+                  {new Date(animal.checkup).toLocaleDateString()}
+                </span>
               </p>
 
-              {mode == "user " && animal.adopted == false && (
+              {mode == "user" && animal.adopted == false && (
                 <button onClick={() => handleAdopted(animal.id)}>Adopt</button>
               )}
               {mode == "admin" ? (

@@ -17,6 +17,7 @@ model Animals {
   species_id  Int 
   chip        Boolean
   years       Int
+  image       String    @db.VarChar
   species     Species   @relation(fields: [species_id], references: [id], onUpdate: Restrict, map: "species_id")
 
   @@map(name: "animals")

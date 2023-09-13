@@ -75,15 +75,13 @@ function List({ animals, fetchNewData }) {
 
   function inputChange(event) {
     const { name, value } = event.target;
-    console.log(event.target.files[0]);
-    if (name == "picture") {
+
+    if (name === "picture") {
       setForm({ ...form, [name]: event.target.files[0].name });
-    } else if (name == "species") {
-      setForm({ ...form, [name]: event.target.files[0].name });
-    } else if (name == "chip") {
+    } else if (name === "chip") {
       setIsCheckedChip((prevValue) => !prevValue);
       setForm({ ...form, [name]: event.target.checked });
-    } else if (name == "adopted") {
+    } else if (name === "adopted") {
       setIsCheckedAdopted((prevValue) => !prevValue);
       setForm({ ...form, [name]: event.target.checked });
     } else {

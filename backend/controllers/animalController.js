@@ -39,15 +39,19 @@ const updateAdoptionStatus = async (req, res) => {
 
 const updateAnimal = async (req, res) => {
   const { id } = req.params;
-  const { name, years, species, adopted, checkup, chip, description } =
+  const { name, years, species_id, adopted, checkup, chip, description } =
     req.body;
   console.log(req.body);
   try {
+    const existingSpecies = await prisma.Species.findUnique({
+      where: { animal_type: species },
+    });
+
     await prisma.Animals.update({
       where: { id: parseInt(id) },
       data: {
         name,
-        species,
+        species: existingSpecies,
         picture,
         years,
         adopted,

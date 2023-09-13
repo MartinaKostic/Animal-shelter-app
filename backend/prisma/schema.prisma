@@ -14,10 +14,9 @@ model Animals {
   description String?
   checkup     DateTime? @db.Date
   adopted     Boolean
-  species_id  Int 
+  species_id  Int      
   chip        Boolean
   years       Int
-  image       String    @db.VarChar
   species     Species   @relation(fields: [species_id], references: [id], onUpdate: Restrict, map: "species_id")
 
   @@map(name: "animals")
@@ -54,7 +53,7 @@ model Notices {
 
 model Species {
   id          Int       @id @default(autoincrement())
-  animal_type String    @db.VarChar
+  animal_type String    @db.VarChar @unique
   animals     Animals[]
 
     @@map(name: "species")

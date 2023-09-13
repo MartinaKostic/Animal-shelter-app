@@ -39,23 +39,28 @@ const updateAdoptionStatus = async (req, res) => {
 
 const updateAnimal = async (req, res) => {
   const { id } = req.params;
-  const { name, years, species_id, adopted, checkup, chip, description } =
+  const { name, years, species, adopted, checkup, chip, description, picture } =
     req.body;
   console.log(req.body);
   try {
     const existingSpecies = await prisma.Species.findUnique({
       where: { animal_type: species },
     });
+    console.log(existingSpecies);
+    if (!existingSpecies) {
+      // species does not exist
+      res.status(404).json({ error: "Species not found" });
+      return;
+    }
 
+    // Update the Animals record with the found Species reference
     await prisma.Animals.update({
       where: { id: parseInt(id) },
       data: {
         name,
-        species: existingSpecies,
         picture,
-        years,
         adopted,
-        checkup,
+        checkup: new Date(checkup),
         chip,
         description,
       },
@@ -70,5 +75,4 @@ export default {
   getAnimals,
   updateAdoptionStatus,
   updateAnimal,
-  // Other controller functions
 };

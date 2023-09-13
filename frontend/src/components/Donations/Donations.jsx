@@ -23,7 +23,7 @@ function Donacije() {
 
   function fetchData() {
     axios
-      .get("http://localhost:3003/donations")
+      .get("http://localhost:5000/donations")
       .then((res) => setDonations(res.data))
       .catch((err) => console.log(err.message));
   }
@@ -37,7 +37,7 @@ function Donacije() {
       description: form.description,
       value: Number(form.amount),
     };
-    axios.post("http://localhost:3003/donations", send).then(() => {
+    axios.post("http://localhost:5000/donations", send).then(() => {
       fetchData();
     });
     setOpenForm(false);

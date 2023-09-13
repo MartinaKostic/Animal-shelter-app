@@ -33,7 +33,7 @@ model Donation_category {
 model Donations {
   id                Int               @id @default(autoincrement())
   type              String            @db.VarChar
-  value_            Decimal           @map("value ") @db.Decimal
+  value           Decimal           @map("value ") @db.Decimal
   description       String?
   category_id       Int
   donation_category Donation_category @relation(fields: [category_id], references: [id], onUpdate: Restrict, map: "category_id")

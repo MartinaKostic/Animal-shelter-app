@@ -8,31 +8,32 @@ function ListofDonations({ donations, refetch }) {
   const mode = useContext(ModeContext);
 
   const handleDonated = async (id) => {
-    await axios.patch(`http://localhost:3003/donations/${id}`, {
-      category: "donated",
+    await axios.patch(`http://localhost:5000/donations/${id}`, {
+      donation_category: 1,
+    });
+    refetch();
+  };
+
+  const handleRepeat = async (id) => {
+    await axios.patch(`http://localhost:5000/donations/${id}`, {
+      donation_category: 3,
     });
     refetch();
   };
 
   const handleDelete = async (id) => {
-    await axios.delete(`http://localhost:3003/donations/${id}`);
+    await axios.delete(`http://localhost:5000/donations/${id}`);
     refetch();
   };
 
-  const handleRepeat = async (id) => {
-    await axios.patch(`http://localhost:3003/donations/${id}`, {
-      category: "trazi",
-    });
-    refetch();
-  };
-
+  console.log(donations);
   return (
     <div>
       <div>
         <h3 className="title">Looking for</h3>
         {donations.length &&
           donations
-            .filter((d) => d.category == "lookingfor")
+            .filter((d) => d.donation_category.name == "lookingfor")
             .map((donation) => (
               <div key={donation.id} className="donation">
                 <p>
@@ -51,7 +52,7 @@ function ListofDonations({ donations, refetch }) {
                       className="add"
                       onClick={() => handleDonated(donation.id)}
                     >
-                      Donirano
+                      Donated
                     </button>
                     <button
                       className="add"
@@ -77,14 +78,14 @@ function ListofDonations({ donations, refetch }) {
         <h3 className="title">Is offered</h3>
         {donations.length &&
           donations
-            .filter((d) => d.category == "offering")
+            .filter((d) => d.donation_category.name == "offering")
             .map((donation) => (
               <div key={donation.id} className="donation">
                 <p>
                   Type: <span className="details">{donation.type}</span>
                 </p>
                 <p>
-                  Amount: <span className="details">{donation.amount}</span>
+                  Amount: <span className="details">{donation.value}</span>
                 </p>
                 <p>
                   Description:{" "}
@@ -113,17 +114,18 @@ function ListofDonations({ donations, refetch }) {
         <h3 className="title">Donated</h3>
         {donations.length &&
           donations
-            .filter((d) => d.category == "donated")
+            .filter((d) => d.donation_category.name == "donated")
             .map((donation) => (
               <div key={donation.id} className="donation">
                 <p>
-                  Type: <span className="details">{donation.tip}</span>
+                  Type: <span className="details">{donation.type}</span>
                 </p>
                 <p>
-                  Amount: <span className="details">{donation.vrijednost}</span>
+                  Amount: <span className="details">{donation.value}</span>
                 </p>
                 <p>
-                  Description: <span className="details">{donation.opis}</span>
+                  Description:{" "}
+                  <span className="details">{donation.description}</span>
                 </p>
                 {mode == "admin" ? (
                   <div>

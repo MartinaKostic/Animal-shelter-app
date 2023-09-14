@@ -8,7 +8,7 @@ datasource db {
 }
 
 model Animals {
-  id          Int       @id
+  id          Int       @id @default(autoincrement())
   name        String    @db.VarChar
   picture     String    @db.VarChar
   description String?
@@ -22,21 +22,13 @@ model Animals {
   @@map(name: "animals")
 }
 
-model Donation_category {
-  id        Int         @id(map: "donateion_category_pkey")
-  name      String      @db.VarChar
-  donations Donations[]
-
-  @@map(name: "donation_category")
-}
 
 model Donations {
   id                Int               @id @default(autoincrement())
   type              String            @db.VarChar
   value           Decimal           @map("value ") @db.Decimal
   description       String?
-  category_id       Int
-  donation_category Donation_category @relation(fields: [category_id], references: [id], onUpdate: Restrict, map: "category_id")
+  category       String?
 
     @@map(name: "donations")
 }

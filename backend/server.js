@@ -4,6 +4,7 @@ import cors from "cors";
 import animalRoutes from "./routers/animalRoutes.js";
 import donationRoutes from "./routers/donationRoutes.js";
 import noticeRoutes from "./routers/noticeRoutes.js";
+import speciesRoutes from "./routers/speciesRoutes.js";
 
 const app = express();
 const port = 5000;
@@ -16,6 +17,7 @@ app.use("/public", express.static("public"));
 app.use("/animals", animalRoutes);
 app.use("/donations", donationRoutes);
 app.use("/notices", noticeRoutes);
+app.use("/species", speciesRoutes);
 
 // app.use((res) => {
 //   res.status(404).json({ message: "Non existing route" });

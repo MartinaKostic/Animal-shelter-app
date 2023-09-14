@@ -8,6 +8,7 @@ function Input(props) {
   const [form, setForm] = useState({
     name: "",
     species: "",
+    species_id: 0,
     picture: "",
     chip: false,
     years: 0,
@@ -30,16 +31,19 @@ function Input(props) {
     });
   };
 
-  // useEffect(() => {
-  //   axios
-  //     .get("http://localhost:5000/species")
-  //     .then((rez) => setSpecies(rez.data))
-  //     .catch((err) => console.log(err.message));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/species")
+      .then((res) => {
+        console.log(res.data);
+        setSpecies(res.data);
+      })
+      .catch((err) => console.log(err.message));
+  }, []);
 
   function inputChange(event) {
     const { name, value } = event.target;
-
+    console.log(name, value);
     if (name == "picture") {
       setForm({ ...form, [name]: event.target.files[0].name });
     } else if (name == "chip") {
@@ -54,9 +58,10 @@ function Input(props) {
   }
 
   function formatData(objekt) {
+    console.log(objekt);
     return {
       name: objekt.name,
-      species: objekt.species,
+      species_id: parseInt(objekt.species),
       chip: objekt.chip,
       description: objekt.description,
       years: Number(objekt.years),
@@ -79,8 +84,8 @@ function Input(props) {
           >
             <option value="">--Select animal species--</option>
             {species.map((species) => (
-              <option key={species} value={species}>
-                {species}
+              <option key={species.id} value={species.id}>
+                {species.animal_type}
               </option>
             ))}
           </select>
@@ -174,7 +179,7 @@ function Input(props) {
         </label>
       </div>
       <button className="add" type="submit">
-        Dodaj!
+        Add!
       </button>
     </form>
   );

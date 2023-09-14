@@ -9,14 +9,14 @@ function ListofDonations({ donations, refetch }) {
 
   const handleDonated = async (id) => {
     await axios.patch(`http://localhost:5000/donations/${id}`, {
-      donation_category: 1,
+      category: "donated",
     });
     refetch();
   };
 
   const handleRepeat = async (id) => {
     await axios.patch(`http://localhost:5000/donations/${id}`, {
-      donation_category: 3,
+      category: "lookingfor",
     });
     refetch();
   };
@@ -33,18 +33,18 @@ function ListofDonations({ donations, refetch }) {
         <h3 className="title">Looking for</h3>
         {donations.length &&
           donations
-            .filter((d) => d.donation_category.name == "lookingfor")
+            .filter((d) => d.category == "lookingfor")
             .map((donation) => (
               <div key={donation.id} className="donation">
                 <p>
                   Type: <span className="details">{donation.type}</span>
                 </p>
                 <p>
-                  Amount: <span className="detalji">{donation.value}</span>
+                  Amount: <span className="details">{donation.value}</span>
                 </p>
                 <p>
                   Description:{" "}
-                  <span className="detalji">{donation.description}</span>
+                  <span className="details">{donation.description}</span>
                 </p>
                 {mode == "admin" ? (
                   <div>
@@ -78,7 +78,7 @@ function ListofDonations({ donations, refetch }) {
         <h3 className="title">Is offered</h3>
         {donations.length &&
           donations
-            .filter((d) => d.donation_category.name == "offering")
+            .filter((d) => d.category == "offering")
             .map((donation) => (
               <div key={donation.id} className="donation">
                 <p>
@@ -114,7 +114,7 @@ function ListofDonations({ donations, refetch }) {
         <h3 className="title">Donated</h3>
         {donations.length &&
           donations
-            .filter((d) => d.donation_category.name == "donated")
+            .filter((d) => d.category == "donated")
             .map((donation) => (
               <div key={donation.id} className="donation">
                 <p>

@@ -4,6 +4,7 @@ import donationController from "../controllers/donationController.js";
 
 router.get("/", donationController.getDonations);
 router.patch("/:id", donationController.updateDonatedCategory);
-// router.put("/:id", donationController.updateDonation);
+router.post("/", donationController.createDonation);
+router.delete("/:id", donationController.deleteDonation);
 
 export default router;

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Filter.css";
 /* eslint-disable react/prop-types */
-function Filter({ adoptedFilter, typeFilter }) {
+function Filter({ adoptedFilter, speciesFilter }) {
   const [selectedAdopted, setSelectedAdopted] = useState(null);
   const [selectedSpecies, setselectedSpecies] = useState(null);
 
@@ -16,8 +16,9 @@ function Filter({ adoptedFilter, typeFilter }) {
   };
 
   const handletypeFilterChange = (e) => {
+    console.log(e.target.value);
     setselectedSpecies(e.target.value);
-    typeFilter(e.target.value);
+    speciesFilter(e.target.value);
   };
 
   const clearadoptedFilter = () => {
@@ -25,9 +26,9 @@ function Filter({ adoptedFilter, typeFilter }) {
     adoptedFilter(null);
   };
 
-  const clearFilterVrsta = () => {
+  const clearFilterSpecies = () => {
     setselectedSpecies(null);
-    typeFilter(null);
+    speciesFilter(null);
   };
   return (
     <div>
@@ -73,7 +74,7 @@ function Filter({ adoptedFilter, typeFilter }) {
           <input
             type="radio"
             name="filter"
-            value="mačka"
+            value="cat"
             checked={selectedSpecies === "cat"}
             onChange={handletypeFilterChange}
           />
@@ -89,7 +90,17 @@ function Filter({ adoptedFilter, typeFilter }) {
           />
           Rabbit
         </label>
-        <button className="botun" onClick={clearFilterVrsta}>
+        <label className="filterItem">
+          <input
+            type="radio"
+            name="filter"
+            value="parrot"
+            checked={selectedSpecies === "parrot"}
+            onChange={handletypeFilterChange}
+          />
+          Parrot
+        </label>
+        <button className="botun" onClick={clearFilterSpecies}>
           Clear Species Filter
         </button>
       </div>

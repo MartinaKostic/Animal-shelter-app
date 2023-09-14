@@ -32,7 +32,6 @@ function MainComponent() {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        // Handle the error, e.g., display an error message to the user
       });
     resetFilters();
   }
@@ -61,7 +60,7 @@ function MainComponent() {
 
     if (speciesFilter) {
       const filteredAnimals = animals.filter(
-        (animal) => animal.species == speciesFilter
+        (animal) => animal.species.animal_type == speciesFilter
       );
       setFilteredAnimals(filteredAnimals);
       return;

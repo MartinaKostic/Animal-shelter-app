@@ -57,14 +57,14 @@ export default function Navbar({ changeContext }) {
         >
           Donations
         </NavLink>
-        <NavLink
+        {/* <NavLink
           style={({ isActive }) => ({
             background: isActive ? "rgba(255, 255, 255, 0.6)" : "transparent",
           })}
           to="/notices"
         >
           Notices
-        </NavLink>
+        </NavLink> */}
         <div className="contextButton">
           <label className="toggle-switch">
             <span>ADMIN</span>

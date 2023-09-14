@@ -41,7 +41,7 @@ const updateAnimal = async (req, res) => {
   const { id } = req.params;
   const { name, years, species, adopted, checkup, chip, description, picture } =
     req.body;
-
+  console.log("alo", req.body.years);
   try {
     const existingSpecies = await prisma.Species.findUnique({
       where: { animal_type: species },
@@ -52,13 +52,15 @@ const updateAnimal = async (req, res) => {
       res.status(404).json({ error: "Species not found" });
       return;
     }
-
+    console.log(req.body.species);
     // Update the Animals record with the found Species reference
     await prisma.Animals.update({
       where: { id: parseInt(id) },
       data: {
         name,
         picture,
+        years: +years,
+        species_id: existingSpecies.id,
         adopted,
         checkup: new Date(checkup),
         chip,
@@ -71,8 +73,42 @@ const updateAnimal = async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 };
+
+const createAnimal = async (req, res) => {
+  const {
+    name,
+    species_id,
+    chip,
+    description,
+    years,
+    picture,
+    checkup,
+    adopted,
+  } = req.body;
+
+  try {
+    const newAnimal = await prisma.Animals.create({
+      data: {
+        name,
+        species_id,
+        chip,
+        description,
+        years,
+        picture,
+        checkup: new Date(checkup),
+        adopted,
+      },
+    });
+
+    res.status(201).json(newAnimal);
+  } catch (error) {
+    console.error("Error creating animal:", error);
+    res.status(500).json({ error: "Server error" });
+  }
+};
 export default {
   getAnimals,
   updateAdoptionStatus,
   updateAnimal,
+  createAnimal,
 };

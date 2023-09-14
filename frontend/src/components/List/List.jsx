@@ -43,23 +43,8 @@ function List({ animals, fetchNewData }) {
   }
   //when admin updates animal
   async function handleSave(animal) {
-    console.log(animal.species.animal_type);
     try {
-      // // Find the Species record based on the provided species value
-      // const existingSpecies = await axios.get(
-      //   `http://localhost:5000/species?animal_type=${form.species}`
-      // );
-
-      // if (existingSpecies.data.length === 0) {
-      //   // Handle the case where the species does not exist
-      //   console.error("Species not found");
-      //   return;
-      // }
-
       const data = prepareData(animal);
-      // Use the existing Species ID in the update
-      // data.species = existingSpecies.data[0].id;
-
       await axios.put(`http://localhost:5000/animals/${selectedId}`, data);
       setEditmode(false);
       fetchNewData();
@@ -83,10 +68,7 @@ function List({ animals, fetchNewData }) {
       species: form.species != null ? form.species : animal.species.animal_type,
       picture: form.picture != null ? form.picture : animal.picture,
       chip: form.chip != null ? form.chip : animal.chip,
-      years:
-        parseInt(form.years) != null
-          ? parseInt(form.years)
-          : parseInt(animal.years),
+      years: form.years != null ? form.years : animal.years,
       description:
         form.description != null ? form.description : animal.description,
       checkup: form.checkup != null ? form.checkup : animal.checkup,

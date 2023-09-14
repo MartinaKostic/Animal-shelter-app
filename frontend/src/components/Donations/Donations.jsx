@@ -52,7 +52,9 @@ function Donacije() {
 
   return (
     <div>
-      <button onClick={() => setOpenForm(true)}>New Donation</button>
+      <button className="addmargin" onClick={() => setOpenForm(true)}>
+        New Donation
+      </button>
       {openForm ? (
         <div>
           <form className="form" onSubmit={sendData}>
@@ -65,7 +67,7 @@ function Donacije() {
                   onChange={inputChange}
                   required
                 >
-                  <option value="">--Select the type of animal--</option>
+                  <option value="">--Select the type of donation--</option>
                   {typeofDonations.map((type) => (
                     <option key={type} value={type}>
                       {type}
@@ -76,7 +78,7 @@ function Donacije() {
             </div>
             <div>
               <label>
-                :
+                Amount:
                 <input
                   type="number"
                   name="amount"

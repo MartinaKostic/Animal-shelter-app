@@ -3,7 +3,6 @@ import { MapContainer, Popup, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { Icon } from "leaflet";
 import { Marker } from "react-leaflet";
-
 function AboutUs() {
   const marker = [{ geocode: [43.357249, 16.950517], popUp: "Adopt Me" }];
   const customIcon = new Icon({
@@ -13,11 +12,8 @@ function AboutUs() {
   return (
     <div className="adopt">
       <h1>Adopt Me</h1>
-      <div className="sboutus">
-        <div className="picture">
-          <img src="/public/landing.jpg" alt="Udomi" />
-        </div>
-
+      <div className="aboutus">
+        <img className="picture " src="/public/landing.jpg" alt="Udomi" />
         <p className="p">
           Udomi Me is an animal shelter located in Baška Voda, dedicated to
           finding new homes for abandoned and abused animals. It was founded in
@@ -29,13 +25,11 @@ function AboutUs() {
           increase public awareness of the problems abandoned animals.
         </p>
       </div>
-
       <div className="section">
         <h1>How can you find us?</h1>
         <p className="pp">
           In Baška Voda, next to Makarska. Adress: Ul. Zrinskih i Frankopana 40
         </p>
-
         <MapContainer center={[43.358452, 16.9478]} zoom={16}>
           <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
           {marker.map((m) => (
@@ -73,12 +67,12 @@ function AboutUs() {
               ></input>
             </label>
           </div>
-
-          <button type="submit">Send!</button>
+          <button className="addmargin" type="submit">
+            Send!
+          </button>
         </form>
       </div>
     </div>
   );
 }
-
 export default AboutUs;
